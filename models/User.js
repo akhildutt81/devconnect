@@ -6,12 +6,12 @@ let UserSchema = new mongoose.Schema({
     required: true
   },
   email: {
-    type: email,
+    type: String,
     required: true,
     unique: true
   },
   password: {
-    type: password,
+    type: String,
     required: true
   },
   avatar: {
@@ -23,6 +23,6 @@ let UserSchema = new mongoose.Schema({
   }
 });
 
-let UserModel = mongoose.Model('user', UserSchema);
+let UserModel = mongoose.model('user', UserSchema);
 
 module.exports = UserModel;
