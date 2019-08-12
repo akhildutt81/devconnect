@@ -3,7 +3,9 @@ let router = express.Router();
 let auth = require('../../middleware/auth');
 let Profiles = require('../../models/Profile');
 let Users = require('../../models/User');
+let config=require('config');
 let { check, validationResult } = require('express-validator/check');
+let axios=require('axios');
 
 // public
 router.get('/', async (req, res) => {
@@ -68,7 +70,6 @@ router.get('/me', auth, async (req, res) => {
     res.status(500).send('Internal error');
   }
 });
-module.exports = router;
 
 // private
 router.post(
@@ -262,3 +263,26 @@ router.delete('/user/education/:edu_id', auth, async (req, res) => {
     res.status(500).send({ msg: 'Server Error' });
   }
 });
+
+//public
+router.get('/github/:username',(req,res)=>{
+  try{
+    let options={
+      method:"GET",
+      url:`http://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientid')}&client_secret=${config.get('githubSecret')}`,
+      headers:{"user-agent":"node.js"}
+    }
+    axios(options).then((resp)=>{
+      console.log(resp);
+      res.send(resp.data);
+    }).catch((resp)=>{
+      console.log(resp);
+      res.send(resp);      
+    })
+  }
+  catch(err){
+    console.log(err);
+    res.status(400).send("Error")
+  }
+})
+module.exports = router;

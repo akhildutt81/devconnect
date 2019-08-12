@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://admin:admin@cluster0-fsxeq.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "jwtSecret"
+  "jwtSecret": "jwtSecret",
+  "githubClientid":"252e957c0f55f54a16ba",
+  "githubSecret":"3f291c4ee07ae2d5614a01490c9339e59a29a7e1"
 }

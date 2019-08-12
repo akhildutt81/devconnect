@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index",
+    "server":"nodemon index",
+    "client":"npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Akhil",
   "license": "ISC",
@@ -21,5 +25,6 @@
   "devDependencies": {
     "concurrently": "^4.1.1",
     "nodemon": "^1.19.1"
-  }
+  },
+  "proxy":"http://localhost:5000"
 }
